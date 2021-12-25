@@ -1,3 +1,10 @@
+let slider=document.querySelector(".slider");
+slider.addEventListener("click",function(event){ //События клика внутри блока калькулятора
+	let el=event.target;
+    if (el.classList.contains('left')) sliderLeft();
+    else if (el.classList.contains('right')) sliderRight();
+});
+
 function sliderLeft(){
     let block1=document.querySelector(".left");
     let block2=document.querySelector(".center");
@@ -21,3 +28,4 @@ function sliderRight(){
     block3.classList.remove("right");
     block3.classList.add("left");
 }
+

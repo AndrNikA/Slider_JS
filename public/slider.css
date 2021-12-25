@@ -5,19 +5,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: darkgray;
 }
 #slider_block1{
-
     display: flex;
 }
 
 #slider_block2{
-
     display: flex;
 }
 #slider_block3{
-
     display: flex;
 }
 .left{
@@ -25,6 +21,11 @@
     order:1;
     transition: 3s;
     opacity: 0.5;
+}
+.left:hover{
+    opacity: 1;
+    transition: 1s;
+    cursor: pointer;
 }
 .center{
     width: 50%;
@@ -36,4 +37,9 @@
     order:3;
     transition: 3s;
     opacity: 0.5;
+}
+.right:hover{
+    opacity: 1;
+    transition: 1s;
+    cursor: pointer;
 }
