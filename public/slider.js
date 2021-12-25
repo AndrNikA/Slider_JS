@@ -1,11 +1,11 @@
 let slider=document.querySelector(".slider");
-slider.addEventListener("click",function(event){ //События клика внутри блока калькулятора
+slider.addEventListener("click",function(event){ //События клика внутри блока слайдера
 	let el=event.target;
     if (el.classList.contains('left')) sliderLeft();
     else if (el.classList.contains('right')) sliderRight();
 });
 
-function sliderLeft(){
+function sliderLeft(){ //Перемещение в лево
     let block1=document.querySelector(".left");
     let block2=document.querySelector(".center");
     let block3=document.querySelector(".right");
@@ -17,7 +17,7 @@ function sliderLeft(){
     block3.classList.add("center");
 }
 
-function sliderRight(){
+function sliderRight(){ //Перемещение в право
     let block1=document.querySelector(".left");
     let block2=document.querySelector(".center");
     let block3=document.querySelector(".right");

@@ -1,6 +1,6 @@
 .slider{
     width: 80%;
-    height: 400px;
+    height: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -8,19 +8,23 @@
 }
 #slider_block1{
     display: flex;
+    position: relative;
 }
 
 #slider_block2{
     display: flex;
+    position: relative;
 }
 #slider_block3{
     display: flex;
+    position: relative;
 }
 .left{
-    width: 25%;
+    opacity: 0.6;
     order:1;
+    width: 25%;
+    z-index: 0;
     transition: 3s;
-    opacity: 0.5;
 }
 .left:hover{
     opacity: 1;
@@ -28,15 +32,17 @@
     cursor: pointer;
 }
 .center{
-    width: 50%;
     order:2;
+    width: 50%;
+    z-index: 1;
     transition: 3s;
 }
 .right{
-    width: 25%;
     order:3;
+    width: 25%;
+    z-index: 0;
+    opacity: 0.6;
     transition: 3s;
-    opacity: 0.5;
 }
 .right:hover{
     opacity: 1;
