@@ -1,13 +1,13 @@
-let images=[];
+let images=[]; //Массив хранящий загруженные в кэш картинки
 
-let left=0;
+let left=0; //Индексы картинок
 let sr=0;
 let right=0;
-let len=0;
-let nav="";
+let len=0; //Кол-во картинок
+let nav=""; //Элменты навигации
 
-window.onload = function () {
-    preload(
+window.onload = function () { 
+    preload( //Изоображения для вывода ссылка или путь
         "1.jpg",
         "2.jpg",
         "3.jpg",
@@ -19,27 +19,27 @@ window.onload = function () {
     sr=Math.ceil(len/2);
     left=sr-1;
     right=sr+1;
-    for(let i=0;i<=len;i++) textcode+='<div class="slider_nav_b" id="sliderNav_'+i+'"></div>';
+    for(let i=0;i<=len;i++) textcode+='<div class="slider_nav_b" id="sliderNav_'+i+'"></div>'; //Добавление навигации
     document.querySelector(".slider_nav").innerHTML=textcode;
     nav=document.querySelectorAll(".slider_nav_b");
     sliderSrc();
 };
 
-function preload() {
+function preload() {//Загрузка изоображений в кэш
     for (var i = 0; i < arguments.length; i++) {
         images[i] = new Image();
         images[i].src = preload.arguments[i];
     }
 }
 
-let slider=document.querySelector(".slider");
+let slider=document.querySelector(".slider"); //События клика на блоки картинок
 slider.addEventListener("click",function(event){ 
 	let el=event.target;
     if (el.classList.contains('left')) sliderLeft();
     else if (el.classList.contains('right')) sliderRight();
 });
 
-let sliderNav=document.querySelector(".slider_nav");
+let sliderNav=document.querySelector(".slider_nav"); //События клика на блоки навигации
 sliderNav.addEventListener("click",function(event){ 
     if (event.target.classList.contains('slider_nav_b')){
         let id=event.target.id;
@@ -94,7 +94,7 @@ function sliderRight(){ //Перемещение в право
     sliderSrc();
 }
 
-function sliderAnimationLeft(){
+function sliderAnimationLeft(){ //Анимация перемещения в лево
     let block1=document.querySelector(".left");
     let block2=document.querySelector(".center");
     let block3=document.querySelector(".right");
@@ -107,7 +107,7 @@ function sliderAnimationLeft(){
     nav[sr].classList.remove("slider_nav_b_hover");
 }
 
-function sliderAnimationRight(){
+function sliderAnimationRight(){ //Анимация перемещения в право
     let block1=document.querySelector(".left");
     let block2=document.querySelector(".center");
     let block3=document.querySelector(".right");
@@ -120,7 +120,7 @@ function sliderAnimationRight(){
     nav[sr].classList.remove("slider_nav_b_hover");
 }
 
-function sliderSrc(){
+function sliderSrc(){ //Изменения путей изоображений
     nav[sr].classList.add("slider_nav_b_hover");
     document.querySelector(".left").src=images[left].src;
     document.querySelector(".center").src=images[sr].src;
