@@ -15,13 +15,12 @@ window.onload = function () {
     let textcode="";
     len=image.length-1;
     sr=Math.ceil(len/2);
-    document.querySelector(".left").src=image[sr-1];
-    document.querySelector(".center").src=image[sr];
-    document.querySelector(".right").src=image[sr+1];
+    left=sr-1;
+    right=sr+1;
     for(let i=0;i<=len;i++) textcode+='<div class="slider_nav_b" id="sliderNav_'+i+'"></div>';
     document.querySelector(".slider_nav").innerHTML=textcode;
     nav=document.querySelectorAll(".slider_nav_b");
-    nav[sr].classList.add("slider_nav_b_hover");
+    sliderSrc();
 };
 
 let slider=document.querySelector(".slider");
@@ -33,19 +32,60 @@ slider.addEventListener("click",function(event){
 
 let sliderNav=document.querySelector(".slider_nav");
 sliderNav.addEventListener("click",function(event){ 
-    let id=event.target.id;
-    let idz=id.length+1;
-    let num="";
-    for(let i=0;i<id.length;i++){
-        if(id[i]==="_") idz=i;
-        else if(i>idz) num+=id[i];
+    if (event.target.classList.contains('slider_nav_b')){
+        let id=event.target.id;
+        let idz=id.length+1;
+        let num="";
+        for(let i=0;i<id.length;i++){
+            if(id[i]==="_") idz=i;
+            else if(i>idz) num+=id[i];
+        }
+        nav[sr].classList.remove("slider_nav_b_hover"); 
+        num=parseInt(num);
+        if (sr<num){
+            sr=num;
+            if (sr==len) right=0;
+            else right=sr+1;
+            if (sr==0) left=len;
+            else left=sr-1;
+            sliderAnimationLeft();
+            sliderSrc();
+        }
+        if (sr>num){ 
+            sr=num;
+            if (sr==0) left=len;
+            else left=sr-1;
+            if (sr==len) right=0;
+            else right=sr+1;
+            sliderAnimationRight();
+            sliderSrc();
+        }
     }
-    nav[sr].classList.remove("slider_nav_b_hover"); 
-    sr=parseInt(num);
-    sliderSrc();
 });
 
 function sliderLeft(){ //Перемещение в лево
+    sliderAnimationRight();
+    if (sr==0) sr=len;
+    else sr-=1;
+    if (sr==0) left=len;
+    else left=sr-1;
+    if (sr==len) right=0;
+    else right=sr+1;
+    sliderSrc();
+}
+
+function sliderRight(){ //Перемещение в право
+    sliderAnimationLeft();
+    if (sr==len) sr=0;
+    else sr+=1;
+    if (sr==len) right=0;
+    else right=sr+1;
+    if (sr==0) left=len;
+    else left=sr-1;
+    sliderSrc();
+}
+
+function sliderAnimationLeft(){
     let block1=document.querySelector(".left");
     let block2=document.querySelector(".center");
     let block3=document.querySelector(".right");
@@ -56,16 +96,9 @@ function sliderLeft(){ //Перемещение в лево
     block3.classList.remove("right");
     block3.classList.add("center");
     nav[sr].classList.remove("slider_nav_b_hover");
-    if (sr==len) sr=0;
-    else sr+=1;
-    if (sr==len) right=0;
-    else right=sr+1;
-    if (sr==0) left=len;
-    else left=sr-1;
-    sliderSrc();
 }
 
-function sliderRight(){ //Перемещение в право
+function sliderAnimationRight(){
     let block1=document.querySelector(".left");
     let block2=document.querySelector(".center");
     let block3=document.querySelector(".right");
@@ -76,13 +109,6 @@ function sliderRight(){ //Перемещение в право
     block3.classList.remove("right");
     block3.classList.add("left");
     nav[sr].classList.remove("slider_nav_b_hover");
-    if (sr==0) sr=len;
-    else sr-=1;
-    if (sr==0) left=len;
-    else left=sr-1;
-    if (sr==len) right=0;
-    else right=sr+1;
-    sliderSrc();
 }
 
 function sliderSrc(){
