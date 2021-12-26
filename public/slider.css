@@ -1,4 +1,4 @@
-.slider_block{
+.slider_block{ //*При необходимости меняйте значение ширины или добавьте высоту в данном блоке*//
     width: 80%;
     display: block;
     float: left;
