@@ -1,10 +1,5 @@
-let image=[
-    "1.jpg",
-    "2.jpg",
-    "3.jpg",
-    "4.jpg",
-    "5.jpg"
-];
+let images=[];
+
 let left=0;
 let sr=0;
 let right=0;
@@ -12,8 +7,15 @@ let len=0;
 let nav="";
 
 window.onload = function () {
+    preload(
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg"
+    )
     let textcode="";
-    len=image.length-1;
+    len=images.length-1;
     sr=Math.ceil(len/2);
     left=sr-1;
     right=sr+1;
@@ -22,6 +24,13 @@ window.onload = function () {
     nav=document.querySelectorAll(".slider_nav_b");
     sliderSrc();
 };
+
+function preload() {
+    for (var i = 0; i < arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = preload.arguments[i];
+    }
+}
 
 let slider=document.querySelector(".slider");
 slider.addEventListener("click",function(event){ 
@@ -113,8 +122,8 @@ function sliderAnimationRight(){
 
 function sliderSrc(){
     nav[sr].classList.add("slider_nav_b_hover");
-    document.querySelector(".left").src=image[left];
-    document.querySelector(".center").src=image[sr];
-    document.querySelector(".right").src=image[right];
+    document.querySelector(".left").src=images[left].src;
+    document.querySelector(".center").src=images[sr].src;
+    document.querySelector(".right").src=images[right].src;
 }
 
