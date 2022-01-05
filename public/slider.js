@@ -1,3 +1,4 @@
+{
 let images=[]; //Массив хранящий загруженные в кэш картинки
 
 let left=0; //Индексы картинок
@@ -127,3 +128,4 @@ function sliderSrc(){ //Изменения путей изоображений
     document.querySelector(".right").src=images[right].src;
 }
 
+};
